@@ -30,3 +30,9 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 ---
 
 Happy coding!
+
+
+
+REFERENCES
+Python Battleship with Object Oriented Programming
+https://www.youtube.com/watch?v=alJH_c9t4zw&t=275s&ab_channel=KnowledgeMavens
