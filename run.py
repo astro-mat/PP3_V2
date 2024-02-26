@@ -4,16 +4,8 @@ class GameBoard:
     def __init__(self, board):
         self.board = board
 
-    def get_letters_to_numbers():
-        """
-        Converts the letters representing columns, to numbers
-        """
-        letters_to_numbers = {"A": 0, "B": 1, "C" : 2, "D" : 3, "E" : 4, "F" : 5, "G" : 6, "H" : 7}
-        return letters_to_numbers
-    
     def print_board(self):
-        print("  A B C D E F G H")
-        print("  +-+-+-+-+-+-+-+")
+        print("  1 2 3 4 5 6 7 8")
         row_number = 1
         for row in self.board:
             print("%d|%s|" % (row_number, "|".join(row)))
@@ -39,16 +31,16 @@ class Battleship:
         User input. The user guesses the row and the column
         """
         try:
-            x_row = input("enter the row of the ships: ")
+            x_row = input("Guess a row: ")
             while x_row not in '12345678':
                 print('Not an appropriate choice, please select a valid row')
-                x_row = input("Enter the row of the ship")
+                x_row = input("Guess a row:")
 
-            y_column = input("Enter the column letter of the ship: ").upper()
-            while y_column not in "ABCDEFGH":
+            y_column = input("Guess a column: ")
+            while y_column not in "12345678":
                 print('Not an appropriate choice, please select a valid column')
-                y_column = input("Enter the column letter of the ship: ").upper()
-            return int(x_row) - 1, GameBoard.get_letters_to_numbers()[y_column]         #-1 as the list starts at 0
+                y_column = input("Guess a column: ")
+            return int(x_row) - 1, int(y_column) -1        #-1 as the list starts at 0
         except ValueError and KeyError:
             print("Not a valid input")
             return self.get_user_input()
@@ -77,7 +69,7 @@ def RunGame():
         user_x_row, user_y_column = Battleship.get_user_input(object)
         #check if duplicate guess
         while user_guess_board.board[user_x_row][user_y_column] == "-" or user_guess_board.board[user_x_row][user_y_column] == "X":
-            print("You guessed one allready")
+            print("You guessed one already")
             user_x_row, user_y_column = Battleship.get_user_input(object)
         #check for hit or miss
         if computer_board.board[user_x_row][user_y_column] == "X":
