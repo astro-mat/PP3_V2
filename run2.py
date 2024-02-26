@@ -2,6 +2,12 @@
 From Code institute
 """
 
+"""
+LEGEND
+X is a miss
+* is a hit
+"""
+
 from random import randint
 
 scores = {"computer": 0, "player": 0}
@@ -28,7 +34,7 @@ class Board:
 
     def guess(self, x, y):
         self.guesses.append((x, y))
-        self.board[x] [y] = "X"
+        self.board[x][y] = "X"
 
         if (x, y) in self.ships:
             self.board[x][y] = "*"
@@ -53,14 +59,15 @@ def random_point(size):
 
 def valid_coordinates(x, y, board):
     """
-    Validates the coordinates that have been input to make sure that they haven't already been guessed and  that they're not outside the scope of our board.
+    Validates the coordinates that have been input to make sure that they haven't already been guessed and that they're not outside the scope of our board.
     """
     pass
 
 
 def populate_board(board):
-    pass
-
+    """
+    choses a random row and random colum and puts a ship there
+    """
 
 def make_guess(board):
     """
@@ -70,8 +77,13 @@ def make_guess(board):
 
 
 def play_game(computer_board, player_board):
-    pass
+    
+    """
+    print(f"{player_name}'s board")
 
+    print("Computers board")
+    """
+    pass
 
 
 def new_game():
