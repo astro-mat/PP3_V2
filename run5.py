@@ -99,7 +99,7 @@ def main():
         print("(Type 'quit' to exit the game)")
 
         # Get input
-        input("Enter row (or 'quit' to exit), followed by column to fire at: ")
+        action = input("Enter row (or 'quit' to exit), followed by column to fire at: ")
         if action.lower().strip() == 'quit':
             break
 
