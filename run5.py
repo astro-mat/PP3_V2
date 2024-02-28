@@ -12,13 +12,13 @@ ships = {
 def random_row():
     return random.randint(0, GRID_SIZE - 1)
 
-def random_col():
+def random_column():
     return random.randint(0, GRID_SIZE - 1)
 
 def place_ship(ship, size, grid):
     while True:
         row = random_row()
-        col = random_col()
+        column = random_column()
 
         is_vertical = random.choice([True, False])
 
@@ -26,20 +26,20 @@ def place_ship(ship, size, grid):
             if row + size > GRID_SIZE:
                 continue
 
-            if '.' not in [grid[row + i][col] for i in range(size)]:
+            if '.' not in [grid[row + i][column] for i in range(size)]:
                 continue
 
             for i in range(size):
-                grid[row + i][col] = ship[0]
+                grid[row + i][column] = ship[0]
         else:
-            if col + size > GRID_SIZE:
+            if column + size > GRID_SIZE:
                 continue
 
-            if '.' not in [grid[row][col + i] for i in range(size)]:
+            if '.' not in [grid[row][column + i] for i in range(size)]:
                 continue
 
             for i in range(size):
-                grid[row][col + i] = ship[0]
+                grid[row][column + i] = ship[0]
 
         break
 
@@ -53,18 +53,18 @@ def place_ships(grid):
                 break
     return grid
 
-def fire(row, col, grid):
-    mark = grid[row][col]
+def fire(row, column, grid):
+    mark = grid[row][column]
     if mark == 'X' or mark == '-':
         print("\nYou've already fired at this location. Try somewhere new!")
         return
     elif mark != '.':
         print(f"\nHit! {mark} ship segment destroyed.")
-        grid[row][col] = 'X'
+        grid[row][column] = 'X'
         return mark
     else:
         print("\nYou missed!")
-        grid[row][col] = '-'
+        grid[row][column] = '-'
         return False
 
 def print_grid(grid, fog_of_war=True):
@@ -99,25 +99,28 @@ def main():
         print("(Type 'quit' to exit the game)")
 
         # Get input
-        action = input("Enter row (or 'quit' to exit), followed by column to fire at: ")
-        if action.lower().strip() == 'quit':
+        a = input("Enter row (or 'quit' to exit), followed by column to fire at: ")
+        b = input("Enter row (or 'quit' to exit), followed by column to fire at: ")
+        if a.lower().strip() == 'quit':
             break
 
-        coordinates = action.split()
+
+        coordinates = a + b
+        print(coordinates)
         if len(coordinates) != 2:
             print("\nInvalid coordinates, please re-enter.")
             continue
 
         try:
-            row, col = map(int, coordinates)
-            if row < 0 or row >= GRID_SIZE or col < 0 or col >= GRID_SIZE:
+            row, column = map(int, coordinates)
+            if row < 0 or row >= GRID_SIZE or column < 0 or column >= GRID_SIZE:
                 print("\nInvalid coordinates, retry.")
                 continue
         except ValueError:
             print("\nInvalid input, please enter row and column as integers.")
             continue
 
-        hit_ship = fire(row, col, enemy_grid)
+        hit_ship = fire(row, column, enemy_grid)
 
         if hit_ship:
             # If all ship segments are hit, mark the ship as destroyed

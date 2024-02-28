@@ -23,7 +23,7 @@ class Board:
 
     def __init__(self, size, num_ships, name, type):
         self.size = size
-        self.board = [["." for x_row in range(size)] for y_column in range(size)]
+        self.board = [["." for row in range(size)] for column in range(size)]
         self.name = name
         self.type = type
         self.guesses = []
@@ -33,23 +33,23 @@ class Board:
         for row in self.board:
             print(" ".join(row))
 
-    def guess(self, x_row, y_column):
-        self.guesses.append((x_row, y_column))
-        self.board[x_row][y_column] = "X"
+    def guess(self, row, column):
+        self.guesses.append((row, column))
+        self.board[row][column] = "X"
 
-        if (x_row, y_column) in self.ships:
-            self.board[x_row][y_column] = "*"
+        if (row, column) in self.ships:
+            self.board[row][column] = "*"
             return "Hit"
         else:
             return "Miss"
         
-    def add_ship(self, x_row, y_column, type="computer"):
+    def add_ship(self, row, column, type="computer"):
         if len(self.ships) >= self.num_ships:
             print("Error: you cannot add more ships")
         else:
-            self.ships.append((x_row, y_column))
+            self.ships.append((row, column))
             if self.type == "player":
-                self.board[x_row][y_column] = "@"
+                self.board[row][column] = "@"
 
 
 def random_point(size):
@@ -58,7 +58,7 @@ def random_point(size):
     """
     return randint(0, size - 1)
 
-def valid_coordinates(x_row, y_column, board):
+def valid_coordinates(row, column, board):
     """
     Validates the coordinates that have been input to make sure that they haven't already been guessed and that they're not outside the scope of our board.
     """
@@ -70,10 +70,10 @@ def populate_board(board):
     choses a random row and random colum and puts a ship there
     """
     for i in range(size):
-        x_row, y_column = random.randint(0, size), random.randint(0, size)
-        while board[x_row][y_column] == "X":
-            x_row, y_column = random.randint(0, size), random.randint(0, size)
-        board[x_row][y_column] = "X"
+        row, column = random.randint(0, size), random.randint(0, size)
+        while board[row][column] == "X":
+            row, column = random.randint(0, size), random.randint(0, size)
+        board[row][column] = "X"
     return board
 
 def make_guess(board):
