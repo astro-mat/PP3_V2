@@ -67,7 +67,7 @@ def valid_coordinates(row, column, board):
 
 def populate_board(board):
     """
-    choses a random row and random colum and puts a ship there
+    choses a random row and random column and puts a ship there
     """
     for i in range(size):
         row, column = random.randint(0, size), random.randint(0, size)
