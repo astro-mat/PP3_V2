@@ -1,4 +1,9 @@
 import random
+"""
+Game variables
+"""
+
+scores = {"computer": 0, "player": 0}
 
 """
 LEGEND
@@ -11,6 +16,12 @@ X is a hit
 def get_user_name():
     player_name = input("what is your name?: \n")
     print(f"the data provided is {player_name}")
+
+def make_guess():
+    row = input("Please guess a row (or 'quit' to exit): ")
+    column = input("please guess a column (or 'quit' to exit): ")
+    coordinates = [row, column]
+    print(coordinates)
 
 
 
@@ -26,7 +37,8 @@ def new_game():
     print(f"Board Size: {size}. Number of ships: {num_ships}")
     print(" Top left corner is row: 0, col 0")
     print("-" * 35)
-    player_name = input("Please enter your name: \n")
+    get_user_name()
     print("-" * 35)
+    make_guess()
 
-get_user_name()
+new_game()
