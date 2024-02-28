@@ -99,14 +99,11 @@ def main():
         print("(Type 'quit' to exit the game)")
 
         # Get input
-        a = input("Enter row (or 'quit' to exit), followed by column to fire at: ")
-        b = input("Enter row (or 'quit' to exit), followed by column to fire at: ")
-        if a.lower().strip() == 'quit':
+        action = input("Enter row (or 'quit' to exit), followed by column to fire at: ")
+        if action.lower().strip() == 'quit':
             break
 
-
-        coordinates = a + b
-        print(coordinates)
+        coordinates = action.split()
         if len(coordinates) != 2:
             print("\nInvalid coordinates, please re-enter.")
             continue
