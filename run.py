@@ -33,7 +33,7 @@ def boards():
     computer_ships = random.sample(range(board_size ** 2), num_ships)
     print("Players ships string is:")
     print(player_ships)         #temp
-    print("Computer ships string is7:")
+    print("Computer ships string is:")
     print(computer_ships)       #temp
 
 def get_user_name():
@@ -46,13 +46,14 @@ def get_user_name():
 def make_guess():
     row = input("Please guess a row (or 'quit' to exit): ")
     column = input("please guess a column (or 'quit' to exit): ")
-    coordinate = (board_size * row) + column
+    coordinate = (int(board_size) * int(row)) + int(column)
     print(f"You guessed {coordinate}") #TO BE DELETED
 
 def new_game():
     """
     Starts a new game. sets the board size and number of ships, resets the scores and initialises the board
     """
+
     scores["computer"] = 0
     scores["player"] = 0
     print("Welcome to BATTLESHIPS!!")
@@ -64,7 +65,4 @@ def new_game():
     boards()
     make_guess()
     
-
-    
-
 new_game()
