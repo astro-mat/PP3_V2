@@ -6,7 +6,7 @@ Game variables
 scores = {"computer": 0, "player": 0}
 board_size = 5
 num_ships = 3
-num_turns = 10
+num_turns = 5
 
 """
 LEGEND
@@ -47,6 +47,25 @@ def make_guess():
     print(f"You guessed {coordinate}") #TO BE DELETED
 """
 
+def print_board():
+    pass
+
+    """
+    print("\n    0  1  2  3  4")
+for row in range(5):
+    line = ""
+    for column in range(5):
+        place = 5 * row + column
+        if place in player_ships:
+            ch = " X "
+        elif place in player_ships:
+            ch = " O "
+        else:
+            ch = " · "
+        line += ch
+        place += 1
+    print(row, "", line)
+"""
 
 def computer_guess():
     return random.randint(0, 24)
@@ -127,19 +146,30 @@ print("Welcome to BATTLESHIPS!!")
 print("-" * 35)
 player_name = input("Please enter your name: \n")
 print("-" * 35)
+"""
+# level of difficulty
 print(f"Please choose your prefered level of difficulty {player_name}")
 difficulty = input("easy (1), Medium (2) or Hard (3)")
 print("-" * 35)
 if difficulty == 1:
     board_size = 5
-    num_ships = 3
+    num_ships = 5
     num_turns = 10
+elif difficulty == 2:
+    board_size = 5
+    num_ships = 3
+    num_turns = 5
+elif difficulty == 3:
+    board_size = 5
+    num_ships = 2
+    num_turns = 3
 
 print(f"You have selected difficulty of {difficulty}")
+"""
 print(f"The Board Size is {board_size}.")
 print(f"The number of ships is {num_ships}.")
 print(f"You will have {num_turns} turns.")
-print(" Top left corner is row: 0, col 0")
+print("Top left corner is row: 0, col 0")
 
 computer_board = Board(board_size, num_ships, "Computer", type="computer")    # class instance for computer_board
 player_board = Board(board_size, num_ships, player_name, type="player")       # Class instance for player board
