@@ -1,4 +1,5 @@
 import random
+
 """
 Game variables
 """
@@ -44,9 +45,20 @@ def make_guess():
     coordinate = (int(board_size) * int(row)) + int(column)
     print(f"You guessed {coordinate}") #TO BE DELETED
 """
-    
+
+
 def computer_guess():
     return random.randint(0, 24)
+
+
+def end_game():
+    play_again = str(input("Do you want to play again? (type Y to play again or anything else to continue playing): "))
+    if play_again.upper() == "Y":
+        play_game()
+    else:
+        print("Thankyou for playing. Goodbye!")
+        return
+
 
 
 def play_game():
@@ -97,11 +109,13 @@ def play_game():
             print("computer ships string is:")
             print(computer_ships)
     else:
-        print("You have ran out of turns. Game over!")
+        print(f"You have ran out of turns {player_name}. Game over!")
+        end_game()
 
 
 scores["computer"] = 0
 scores["player"] = 0
+
 print("Welcome to BATTLESHIPS!!")
 print(f"Board Size: {board_size}. Number of ships: {num_ships}")
 print(" Top left corner is row: 0, col 0")
