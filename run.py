@@ -6,6 +6,7 @@ Game variables
 scores = {"computer": 0, "player": 0}
 board_size = 5
 num_ships = 3
+num_turns = 10
 
 """
 LEGEND
@@ -62,16 +63,21 @@ def end_game():
 
 
 def play_game():
-    num_turns = 0
-    while num_turns < 5:
+    num_turns_taken = 0
+    while num_turns_taken < 5:
         print("-" * 35)
-        print(f"You have used {num_turns} out of 5 turns")
-        print(f"You have {5 - num_turns} turns left")
-        row = input("Please guess a row (or 'quit' to exit): ")
+        print(f"You have used {num_turns_taken} out of {num_turns} turns")
+        print(f"You have {5 - num_turns_taken} turns left")
+        row = input("Please guess a row (or type 'Q' to quit/exit): ")
+        if row.upper() == "Q":
+            return end_game()
         column = input("please guess a column (or 'quit' to exit): ")
+        print("-" * 35)
+        if row.upper() == "Q":
+            return end_game()
         coordinate = (int(board_size) * int(row)) + int(column)
         print(f"You guessed {coordinate}") #TO BE DELETED
-        num_turns = num_turns + 1
+        num_turns_taken = num_turns_taken + 1
         """
         Check if the guess is in computer_ships
         """
@@ -117,11 +123,23 @@ scores["computer"] = 0
 scores["player"] = 0
 
 print("Welcome to BATTLESHIPS!!")
-print(f"Board Size: {board_size}. Number of ships: {num_ships}")
-print(" Top left corner is row: 0, col 0")
+
 print("-" * 35)
 player_name = input("Please enter your name: \n")
 print("-" * 35)
+print(f"Please choose your prefered level of difficulty {player_name}")
+difficulty = input("easy (1), Medium (2) or Hard (3)")
+print("-" * 35)
+if difficulty == 1:
+    board_size = 5
+    num_ships = 3
+    num_turns = 10
+
+print(f"You have selected difficulty of {difficulty}")
+print(f"The Board Size is {board_size}.")
+print(f"The number of ships is {num_ships}.")
+print(f"You will have {num_turns} turns.")
+print(" Top left corner is row: 0, col 0")
 
 computer_board = Board(board_size, num_ships, "Computer", type="computer")    # class instance for computer_board
 player_board = Board(board_size, num_ships, player_name, type="player")       # Class instance for player board
