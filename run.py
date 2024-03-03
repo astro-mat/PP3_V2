@@ -1,19 +1,13 @@
 import random
 
-"""
-Game variables
-"""
+# Game variables
+
 scores = {"computer": 0, "player": 0}
 board_size = 5
 num_ships = 3
 num_turns = 5
 
-"""
-LEGEND
-@ position of ship
-- is a miss
-X is a hit
-"""
+
 class Board:
     def __init__(self, board_size, num_ships, player_name, type):
         self.board_size = board_size
@@ -21,31 +15,18 @@ class Board:
         self.player_name = player_name
         self.type = type
 
-
-
     def create_user(self):
-        """
-        instance method to
-        Store user name
-        Keep Score
-        """
+
+        # instance method to Store user name Keep Score
+
         pass
 
     def create_boards(self):
-        """
-        instance method to create the boards
-        """
+
+        # instance method to create the boards
+
         return random.sample(range(self.board_size ** 2), self.num_ships)
 
-
-
-"""
-def make_guess():
-    row = input("Please guess a row (or 'quit' to exit): ")
-    column = input("please guess a column (or 'quit' to exit): ")
-    coordinate = (int(board_size) * int(row)) + int(column)
-    print(f"You guessed {coordinate}") #TO BE DELETED
-"""
 
 def display_player_board():
     print("\n    0  1  2  3  4")
@@ -55,14 +36,14 @@ def display_player_board():
         for column in range(board_size):
             place = 5 * row + column
             if place in computer_hit:
-                ch = "|X|"
+                character = "|X|"
             elif place in computer_miss:
-                ch = "|O|"
+                character = "|O|"
             elif place in player_ships:
-                ch = "|@|"
+                character = "|@|"
             else:
-                ch = "|_|"
-            line += ch
+                character = "|_|"
+            line += character
             place += 1
         print(row, "", line)
 
@@ -75,12 +56,12 @@ def display_computer_board():
         for column in range(board_size):
             place = 5 * row + column
             if place in player_hit:
-                ch = "|X|"
+                character = "|X|"
             elif place in player_miss:
-                ch = "|O|"
+                character = "|O|"
             else:
-                ch = "|_|"
-            line += ch
+                character = "|_|"
+            line += character
             place += 1
         print(row, "", line)
 
@@ -90,13 +71,14 @@ def computer_guess():
 
 
 def end_game():
-    play_again = str(input("Do you want to play again? (type Y to play again or any other key to quit):"))
+    print("Do you want to play again?")
+    print("(type Y to play again")
+    play_again = str(input(" or any other key to quit):\n"))
     if play_again.upper() == "Y":
         play_game()
     else:
         print("Thankyou for playing. Goodbye!")
         return
-
 
 
 def play_game():
@@ -110,7 +92,6 @@ def play_game():
         print(player_hit)                   #temp
         print("Players misses string is:")  #temp
         print(player_miss)                  #temp
-        
         print("\nComputers Board")
         display_computer_board()
         print("Computer ships string is:")  #temp
@@ -119,14 +100,13 @@ def play_game():
         print(computer_hit)                 #temp
         print("Computer misses string is:") #temp
         print(computer_miss)                #temp
-        
         print("-" * 35)
         print(f"You have used {num_turns_taken} out of {num_turns} turns")
         print(f"You have {5 - num_turns_taken} turns left")
-        row = input("Please guess a row (or type 'Q' to quit/exit): ")
+        row = input("Please guess a row (or type 'Q' to quit/exit): \n")
         if row.upper() == "Q":
             return end_game()
-        column = input("please guess a column (or 'quit' to exit): ")
+        column = input("please guess a column (or 'quit' to exit): \n")
         print("-" * 35)
         if row.upper() == "Q":
             return end_game()
@@ -147,22 +127,22 @@ def play_game():
                 player_hit.append(coordinate)
                 print("you missed, try again")
                 print("-" * 35)
-            
         except ValueError:
             print("Incorrect coordinates.")
             print("Please enter your guess as a number.\n")
-        
-        """
-        computer turn
-        """
+
+        # computer turn
+
         computer_coordinate = computer_guess()
 
         if computer_coordinate in player_ships:
             player_ships.remove(computer_coordinate)
             computer_hit.append(computer_coordinate)
-            print(f"computer guessed {computer_coordinate} and hit one of your ships")
+            print(f"computer guessed {computer_coordinate}\n")
+            print("and hit one of your ships!")
         else:
-            print(f"computer guessed {computer_coordinate} and missed your ship")
+            print(f"computer guessed {computer_coordinate}\n")
+            print("and missed your ships")
 
     else:
         print(f"You have ran out of turns {player_name}. Game over!")
@@ -180,22 +160,24 @@ print("-" * 35)
 print(f"The Board Size is {board_size}.")
 print(f"The number of ships is {num_ships}.")
 print(f"You will have {num_turns} turns.")
-print("Top left corner is row: 0, col 0")
+print("Top left corner is row: 0, col 0\n")
+print("--LEGEND--")
+print("@ Is a ship")
+print("- Is a miss")
+print("X Is a hit")
 print("-" * 35)
 
-computer_board = Board(board_size, num_ships, "Computer", type="computer")    # class instance for computer_board
-player_board = Board(board_size, num_ships, player_name, type="player")       # Class instance for player board
-
+# class instance for computer_board
+computer_board = Board(board_size, num_ships, "Computer", type="computer")
+# Class instance for player board
+player_board = Board(board_size, num_ships, player_name, type="player")
 
 computer_ships = computer_board.create_boards()
 computer_hit = []
 computer_miss = []
- 
+
 player_ships = player_board.create_boards()
 player_hit = []
 player_miss = []
 
-
-
 play_game()
-
