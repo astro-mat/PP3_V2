@@ -49,18 +49,19 @@ def make_guess():
 
 def display_player_board():
     print("\n    0  1  2  3  4")
+    print("    _  _  _  _  _")
     for row in range(5):
         line = ""
         for column in range(board_size):
             place = 5 * row + column
             if place in computer_hit:
-                ch = " X "
+                ch = "|X|"
             elif place in computer_miss:
-                ch = " O "
+                ch = "|O|"
             elif place in player_ships:
-                ch = " @ "
+                ch = "|@|"
             else:
-                ch = " · "
+                ch = "|_|"
             line += ch
             place += 1
         print(row, "", line)
@@ -68,16 +69,17 @@ def display_player_board():
 
 def display_computer_board():
     print("\n    0  1  2  3  4")
+    print("    _  _  _  _  _")
     for row in range(5):
         line = ""
         for column in range(board_size):
             place = 5 * row + column
             if place in player_hit:
-                ch = " X "
+                ch = "|X|"
             elif place in player_miss:
-                ch = " O "
+                ch = "|O|"
             else:
-                ch = " · "
+                ch = "|_|"
             line += ch
             place += 1
         print(row, "", line)
@@ -88,7 +90,7 @@ def computer_guess():
 
 
 def end_game():
-    play_again = str(input("Do you want to play again? (type Y to play again or anything else to continue playing): "))
+    play_again = str(input("Do you want to play again? (type Y to play again or any other key to quit):"))
     if play_again.upper() == "Y":
         play_game()
     else:
@@ -100,24 +102,24 @@ def end_game():
 def play_game():
     num_turns_taken = 0
     while num_turns_taken < 5:
-        print("Players ships string is:")
-        print(player_ships)         #temp
-        print("Players hits string is:")
-        print(player_hit)         #temp
-        print("Players misses string is:")
-        print(player_miss)         #temp
         print(f"{player_name}'s Board")
         display_player_board()
-
-        print("Computer ships string is:")
-        print(computer_ships)       #temp
-        print("Computer hits string is:")
-        print(computer_hit)       #temp
-        print("Computer misses string is:")
-        print(computer_miss)       #temp
-        print("Computers Board")
+        print("Players ships string is:")   #temp
+        print(player_ships)                 #temp
+        print("Players hits string is:")    #temp
+        print(player_hit)                   #temp
+        print("Players misses string is:")  #temp
+        print(player_miss)                  #temp
+        
+        print("\nComputers Board")
         display_computer_board()
-    
+        print("Computer ships string is:")  #temp
+        print(computer_ships)               #temp
+        print("Computer hits string is:")   #temp
+        print(computer_hit)                 #temp
+        print("Computer misses string is:") #temp
+        print(computer_miss)                #temp
+        
         print("-" * 35)
         print(f"You have used {num_turns_taken} out of {num_turns} turns")
         print(f"You have {5 - num_turns_taken} turns left")
@@ -139,8 +141,6 @@ def play_game():
                 computer_ships.remove(coordinate)
                 player_hit.append(coordinate)
                 print("You hit a ship")
-                print("Computer ships string is now:")
-                print(computer_ships)
                 print("-" * 35)
             else:
                 computer_miss.append(coordinate)
@@ -161,16 +161,9 @@ def play_game():
             player_ships.remove(computer_coordinate)
             computer_hit.append(computer_coordinate)
             print(f"computer guessed {computer_coordinate} and hit one of your ships")
-            print("player ships string is now:")
-            print(player_ships)
-            print("computer ships string is:")
-            print(computer_ships)
         else:
             print(f"computer guessed {computer_coordinate} and missed your ship")
-            print("player ships string is:")
-            print(player_ships)
-            print("computer ships string is:")
-            print(computer_ships)
+
     else:
         print(f"You have ran out of turns {player_name}. Game over!")
         end_game()
@@ -184,30 +177,11 @@ print("Welcome to BATTLESHIPS!!")
 print("-" * 35)
 player_name = input("Please enter your name: \n")
 print("-" * 35)
-"""
-# level of difficulty
-print(f"Please choose your prefered level of difficulty {player_name}")
-difficulty = input("easy (1), Medium (2) or Hard (3)")
-print("-" * 35)
-if difficulty == 1:
-    board_size = 5
-    num_ships = 5
-    num_turns = 10
-elif difficulty == 2:
-    board_size = 5
-    num_ships = 3
-    num_turns = 5
-elif difficulty == 3:
-    board_size = 5
-    num_ships = 2
-    num_turns = 3
-
-print(f"You have selected difficulty of {difficulty}")
-"""
 print(f"The Board Size is {board_size}.")
 print(f"The number of ships is {num_ships}.")
 print(f"You will have {num_turns} turns.")
 print("Top left corner is row: 0, col 0")
+print("-" * 35)
 
 computer_board = Board(board_size, num_ships, "Computer", type="computer")    # class instance for computer_board
 player_board = Board(board_size, num_ships, player_name, type="player")       # Class instance for player board
