@@ -2,7 +2,7 @@ import random
 
 # Game variables
 
-scores = {"computer": 0, "player": 0}
+
 board_size = 5
 num_ships = 3
 num_turns = 5
@@ -27,6 +27,11 @@ class Board:
 
         return random.sample(range(self.board_size ** 2), self.num_ships)
 
+class Game:
+    pass
+
+class User:
+    pass
 
 def display_player_board():
     print("\n    0  1  2  3  4")
@@ -103,13 +108,16 @@ def play_game():
         print("-" * 35)
         print(f"You have used {num_turns_taken} out of {num_turns} turns")
         print(f"You have {5 - num_turns_taken} turns left")
-        row = input("Please guess a row (or type 'Q' to quit/exit): \n")
+
+        # row = input("Please guess a row (or type 'Q' to quit/exit): \n")
+        row = validate_coordinate("Please guess a row (or type 'Q' to quit/exit): \n", ['0', '1', '2', '3', '4', 'Q'])
         if row.upper() == "Q":
             return end_game()
-        column = input("please guess a column (or 'quit' to exit): \n")
+        # column = input("please guess a column (or 'quit' to exit): \n")
+        column = validate_coordinate("Please guess a column (or 'quit' to exit): \n", ['0', '1', '2', '3', '4', 'Q'])
+        if column.upper() == "Q":
+            return end_game()
         print("-" * 35)
-        if row.upper() == "Q":
-            return end_game()
         coordinate = (int(board_size) * int(row)) + int(column)
         print(f"You guessed {coordinate}") #TO BE DELETED
         num_turns_taken = num_turns_taken + 1
@@ -142,20 +150,44 @@ def play_game():
             print("and hit one of your ships!")
         else:
             print(f"computer guessed {computer_coordinate}\n")
-            print("and missed your ships")
+            print("and missed your ships\n")
 
     else:
         print(f"You have ran out of turns {player_name}. Game over!")
         end_game()
 
 
-scores["computer"] = 0
-scores["player"] = 0
+def get_user_name():
+    input_is_valid = False
+    while input_is_valid is False:
+        user_input = input("Please enter your name (3 letters or more): \n")
+        if user_input:
+            if len(user_input) >= 3:
+                input_is_valid = True
+            else:
+                print('Name should be 3 letters or more')
+        else:
+            print('Cant have an empty Name')
+    return user_input
+
+def validate_coordinate(input_message, valid_values):
+    input_is_valid = False
+    while input_is_valid is False:
+        user_input = input(input_message)
+        if user_input:
+            if user_input.upper() in valid_values:
+                input_is_valid = True
+            else:
+                print(f'Please enter one of the following values {valid_values}')
+        else:
+            print('Coordinate cant be empty')
+    return user_input
+
 
 print("Welcome to BATTLESHIPS!!")
 
 print("-" * 35)
-player_name = input("Please enter your name: \n")
+player_name =  get_user_name()
 print("-" * 35)
 print(f"The Board Size is {board_size}.")
 print(f"The number of ships is {num_ships}.")
