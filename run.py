@@ -5,7 +5,7 @@ import random
 
 board_size = 5
 num_ships = 3
-num_turns = 5
+num_turns = 10
 
 
 class Board:

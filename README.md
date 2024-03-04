@@ -1,39 +1,32 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome,
+# Battleships Game
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+Battleships is a Python-based terminal game where players engage in a battle against the computer. The objective is to sink all three of the opponent's ships on the playboard. Each player has 10 turns to make their shots by guessing coordinates. This game is hosted on the Code Institute's mock terminal on Heroku.
 
-## Reminders
+A live link to the game can be found here: [Battleships Game](https://mattleships-1ef855055238.herokuapp.com/).
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
+![Battleship - am i responsive](images/amiresponsive.png)
 
 
 
-REFERENCES
-Python Battleship with Object Oriented Programming
-https://www.youtube.com/watch?v=alJH_c9t4zw&t=275s&ab_channel=KnowledgeMavens
 
+## How to play
+
+
+
+
+
+
+
+
+# Credits
+
+- [Code institute Love Sandwiches Project](https://github.com/tildeholmqvist/LoveSandwiches)
+- [W3Schools](https://www.w3schools.com/)
+- [Stack Overflow](https://stackoverflow.com/)
+
+
+- [Battleships game by Mark Anthony Lleg](https://llego.dev/posts/how-code-simple-battleship-game-python/)
+- [Python Battleship with Object Oriented Programming](https://www.youtube.com/watch?v=alJH_c9t4zw&t=275s&ab_channel=KnowledgeMavens)
+- [Battleships game by Tilde Holm](https://github.com/tildeholmqvist/battleshipgame)
+- And my mentor Antonio for all his help.
