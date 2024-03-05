@@ -71,8 +71,12 @@ def display_computer_board():
         print(row, "", line)
 
 
+
+
 def computer_guess():
     return random.randint(0, 24)
+
+
 
 
 def end_game():
@@ -88,26 +92,30 @@ def end_game():
 
 def play_game():
     num_turns_taken = 0
-    while num_turns_taken < 5:
+    while num_turns_taken < num_turns:
         print(f"{player_name}'s Board")
         display_player_board()
-        print("Players ships string is:")   #temp
+        """
+        print("Players ships list is:")   #temp
         print(player_ships)                 #temp
-        print("Players hits string is:")    #temp
+        print("Players hits list is:")    #temp
         print(player_hit)                   #temp
-        print("Players misses string is:")  #temp
+        print("Players misses list is:")  #temp
         print(player_miss)                  #temp
+        """
         print("\nComputers Board")
         display_computer_board()
-        print("Computer ships string is:")  #temp
+        """
+        print("Computer ships list is:")  #temp
         print(computer_ships)               #temp
-        print("Computer hits string is:")   #temp
+        print("Computer hits list is:")   #temp
         print(computer_hit)                 #temp
-        print("Computer misses string is:") #temp
+        print("Computer misses list is:") #temp
         print(computer_miss)                #temp
+        """
         print("-" * 35)
         print(f"You have used {num_turns_taken} out of {num_turns} turns")
-        print(f"You have {5 - num_turns_taken} turns left")
+        print(f"You have {num_turns - num_turns_taken} turns left")
 
         # row = input("Please guess a row (or type 'Q' to quit/exit): \n")
         row = validate_coordinate("Please guess a row (or type 'Q' to quit/exit): \n", ['0', '1', '2', '3', '4', 'Q'])
@@ -119,11 +127,11 @@ def play_game():
             return end_game()
         print("-" * 35)
         coordinate = (int(board_size) * int(row)) + int(column)
-        print(f"You guessed {coordinate}") #TO BE DELETED
         num_turns_taken = num_turns_taken + 1
-        """
-        Check if the guess is in computer_ships
-        """
+        
+        # PLAYERS TURN
+        # Check if the player guess is in computer_ships
+
         try:
             if coordinate in computer_ships:
                 computer_ships.remove(coordinate)
@@ -131,26 +139,28 @@ def play_game():
                 print("You hit a ship")
                 print("-" * 35)
             else:
-                computer_miss.append(coordinate)
-                player_hit.append(coordinate)
-                print("you missed, try again")
+                player_miss.append(coordinate)
+                print("You missed, try again")
                 print("-" * 35)
         except ValueError:
             print("Incorrect coordinates.")
             print("Please enter your guess as a number.\n")
+            print("-" * 35)
 
-        # computer turn
+        # COMPUTERS TURN
+        # Check if computer guess is in player_ships
 
         computer_coordinate = computer_guess()
 
         if computer_coordinate in player_ships:
             player_ships.remove(computer_coordinate)
             computer_hit.append(computer_coordinate)
-            print(f"computer guessed {computer_coordinate}\n")
-            print("and hit one of your ships!")
+            print("Computer hit one of your ships!")
+            print("-" * 35)
         else:
-            print(f"computer guessed {computer_coordinate}\n")
-            print("and missed your ships\n")
+            computer_miss.append(computer_coordinate)
+            print("Computer missed your ships")
+            print("-" * 35)
 
     else:
         print(f"You have ran out of turns {player_name}. Game over!")
@@ -185,7 +195,7 @@ def validate_coordinate(input_message, valid_values):
 
 
 print("Welcome to BATTLESHIPS!!")
-
+print("Play against the computer to see who wins!")
 print("-" * 35)
 player_name =  get_user_name()
 print("-" * 35)
