@@ -56,8 +56,24 @@ The flowchart's logic guided me in determining the types of functions to develop
 
 ## Features 
 
-
 #### Username Input & Instructions  
+
+The game begins with the game title and a brief desciption of the game.
+The user is then prompted to enter a username.
+
+![Screenshot of the game](images/usernameandinstructions.png) 
+
+#### Game initialisation
+
+The game is started. Some information is displayed about the game
+- The board size
+- The number of ships each side has
+- the number of turns each player has
+- A description of the numbers of the board
+
+The two boards are then displayed, the players board with his ships visable and the computers board showing no ships
+
+![Game initialisation](images/init_game.png) 
 
 
 
@@ -70,6 +86,8 @@ Future
 
 Adjust level of dificulty
 keep both computer and players score
+increase ship size
+include graphics
 
 
 

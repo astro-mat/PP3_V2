@@ -194,13 +194,17 @@ def validate_coordinate(input_message, valid_values):
     return user_input
 
 
-print("Welcome to BATTLESHIPS!!")
+print("Welcome to BATTLESHIPS!!\n")
 print("Play against the computer to see who wins!")
+print("choose where to fire on the grid and see")
+print("if you hit one of the computers ships")
+print("Then wait to see if the computer hits one of yours!")
+print("First to sink all their opponants ships wins")
 print("-" * 35)
 player_name =  get_user_name()
 print("-" * 35)
 print(f"The Board Size is {board_size}.")
-print(f"The number of ships is {num_ships}.")
+print(f"The number of ships each side has is {num_ships}.")
 print(f"You will have {num_turns} turns.")
 print("Top left corner is row: 0, col 0\n")
 print("--LEGEND--")
