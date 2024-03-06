@@ -7,6 +7,7 @@ board_size = 5
 num_ships = 3
 num_turns = 10
 
+#-------------------------------------------------------------------------------------
 
 class Board:
     def __init__(self, board_size, num_ships, player_name, type):
@@ -15,28 +16,15 @@ class Board:
         self.player_name = player_name
         self.type = type
 
-    def create_user(self):
-
-        # instance method to Store user name Keep Score
-
-        pass
 
     def create_boards(self):
-
         # instance method to create the boards
-
         return random.sample(range(self.board_size ** 2), self.num_ships)
-
-class Game:
-    pass
-
-class User:
-    pass
 
 def display_player_board():
     print("\n    0  1  2  3  4")
     print("    _  _  _  _  _")
-    for row in range(5):
+    for row in range(board_size):
         line = ""
         for column in range(board_size):
             place = 5 * row + column
@@ -52,11 +40,10 @@ def display_player_board():
             place += 1
         print(row, "", line)
 
-
 def display_computer_board():
     print("\n    0  1  2  3  4")
     print("    _  _  _  _  _")
-    for row in range(5):
+    for row in range(board_size):
         line = ""
         for column in range(board_size):
             place = 5 * row + column
@@ -70,14 +57,10 @@ def display_computer_board():
             place += 1
         print(row, "", line)
 
+#---------------------------------------------------------------------------------------------------
 
-
-
-def computer_guess():
-    return random.randint(0, 24)
-
-
-
+class Game:
+    pass
 
 def end_game():
     print("Do you want to play again?")
@@ -98,7 +81,6 @@ def continue_game():
     else:
         print("Thankyou for playing. Goodbye!")
         return
-
 
 def play_game():
     num_turns_taken = 0
@@ -178,19 +160,8 @@ def play_game():
         print(f"You have ran out of turns {player_name}. Game over!")
         end_game()
 
-
-def get_user_name():
-    input_is_valid = False
-    while input_is_valid is False:
-        user_input = input("Please enter your name (3 letters or more): \n")
-        if user_input:
-            if len(user_input) >= 3:
-                input_is_valid = True
-            else:
-                print('Name should be 3 letters or more')
-        else:
-            print('Cant have an empty Name')
-    return user_input
+def computer_guess():
+    return random.randint(0, 24)
 
 def validate_coordinate(input_message, valid_values):
     input_is_valid = False
@@ -206,6 +177,23 @@ def validate_coordinate(input_message, valid_values):
     return user_input
 
 
+#-------------------------------------------------------------------------------------------
+
+class User:
+    pass
+
+def get_user_name():
+    input_is_valid = False
+    while input_is_valid is False:
+        user_input = input("Please enter your name (3 letters or more): \n")
+        if user_input:
+            if len(user_input) >= 3:
+                input_is_valid = True
+            else:
+                print('Name should be 3 letters or more')
+        else:
+            print('Cant have an empty Name')
+    return user_input
 
 
 print("Welcome to BATTLESHIPS!!\n")
