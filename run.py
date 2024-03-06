@@ -227,3 +227,11 @@ player_hit = []
 player_miss = []
 
 play_game()
+
+"""
+
+NEED TO ADD/FIX
+- Add more classes
+- validate if you have already chosen that coordinate
+- what happens when you win?
+- say how many ships left 

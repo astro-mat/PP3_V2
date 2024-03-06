@@ -71,23 +71,94 @@ The game is started. Some information is displayed about the game
 - the number of turns each player has
 - A description of the numbers of the board
 
-The two boards are then displayed, the players board with his ships visable and the computers board showing no ships
-
 ![Game initialisation](images/init_game.png) 
 
+A random function generates the positions of the computers boards
+
+The two boards are then displayed, the players board with his ships visible and indicated by a "@" symbol and the computers board showing no ships.
+
+![Random Board Generation](images/randomboard.png) 
 
 
+The player is prompted to first quess a row that the computers ships may be in, and then guess a column. 
+
+Once a valid input is made, A message is displayed stating weather your guess hit a ship and/or the computers guess hit one of the players ships.
+
+If the player enters an invalid input, an error message is displayed and the player is prompted to re-enter
+
+![Validation of coordinates](images/coordinatevalid.png) 
+
+The two boards are displayed again reflecting this result.
+
+- if one of the players hits a ship, an "X" is displayed
+- A miss is indicated by a "0"
+
+The number of turns taken and number of turns left is displayed and if there are turns left and no one has won, the player is once again prompted to enter a row and column guess.
+
+![Playboards during the game](images/playboards.png) 
+
+Whenever the player is asked to enter new coordinates, an option is given as to weather the player wants to quit or continue playing. If they enter "quit" they are then finally asked to press any key to quit or press "Y" to return to the game.
+
+![Exit feature](images/exitgame.png) 
+
+### Future Features 
+
+Possible future features to be developed
+
+- To Adjust level of dificulty for the player by altering a combination of board size, number of turns and number of ships
+- TO be able to keep both computer and players score
+- to have different sizes of ships. Perhaps related to the chosen difficulty.
+- To improve the graphical display.
+
+## Technologies Used 
+
+ - Python 
+ - Heroku
+ - Gitpod
+
+## Data Model
+
+In this game, I am using several classes as my data model.
+
+### Board Class
+
+This class stores the information required for generating both the player board and the computer board
+
+It includes all of the functions of the game such as the boardsize, ship size, ship location.
 
 
+### Game Class
+
+The game class includes all the information needed while playing the game. the guesses of coordinates of both the player and the computer, if it was a hit or miss, the remaining turns, and all of the other details on how the game is played.  
 
 
+### User Class
 
-Future
+The user class includes all the details for the user such as user name and score
 
-Adjust level of dificulty
-keep both computer and players score
-increase ship size
-include graphics
+## Testing  
+
+![Screenshot of PEP8 linter](images/pep8.png) 
+
+- The game code has been tested with the [PEP8](https://pep8ci.herokuapp.com/#) linter and all errors were addressed and fixed.  
+
+- The players inputs have been manually tested on the Code Institute Heroku terminal and is working without any errors: 
+
+  - Invalid Username 
+
+    - Empty Character 
+
+  - Invalid Coordinates 
+
+    - A number lower than 0 
+
+    - A number higher than 4 
+
+    - A letter (except for "Q")
+
+    - A word or words
+
+    - Empty Character 
 
 
 
