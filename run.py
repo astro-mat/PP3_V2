@@ -89,6 +89,16 @@ def end_game():
         print("Thankyou for playing. Goodbye!")
         return
 
+def continue_game():
+    print("Do you accept the challenge?")
+    print("(type Y to continue")
+    play_again = str(input(" or any other key to quit):\n"))
+    if play_again.upper() == "Y":
+        return
+    else:
+        print("Thankyou for playing. Goodbye!")
+        return
+
 
 def play_game():
     num_turns_taken = 0
@@ -147,6 +157,8 @@ def play_game():
             print("Please enter your guess as a number.\n")
             print("-" * 35)
 
+
+
         # COMPUTERS TURN
         # Check if computer guess is in player_ships
 
@@ -194,15 +206,18 @@ def validate_coordinate(input_message, valid_values):
     return user_input
 
 
+
+
 print("Welcome to BATTLESHIPS!!\n")
 print("Play against the computer to see who wins!")
 print("choose where to fire on the grid and see")
 print("if you hit one of the computers ships")
 print("Then wait to see if the computer hits one of yours!")
-print("First to sink all their opponants ships wins")
+print("First to sink all their opponents ships wins")
 print("-" * 35)
 player_name =  get_user_name()
 print("-" * 35)
+print(f"Thanks for playing {player_name}")
 print(f"The Board Size is {board_size}.")
 print(f"The number of ships each side has is {num_ships}.")
 print(f"You will have {num_turns} turns.")
@@ -210,7 +225,10 @@ print("Top left corner is row: 0, col 0\n")
 print("--LEGEND--")
 print("@ Is a ship")
 print("- Is a miss")
-print("X Is a hit")
+print("X Is a hit\n")
+print("Good Luck!!!")
+continue_game()
+
 print("-" * 35)
 
 # class instance for computer_board
