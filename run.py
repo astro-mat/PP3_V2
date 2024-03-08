@@ -3,10 +3,6 @@ import random
 # Game variables
 
 
-board_size = 5
-num_ships = 3
-num_turns = 10
-
 
 def get_user_name():
     input_is_valid = False
@@ -25,12 +21,15 @@ def get_user_name():
 
 
 # BOARD CLASS-------------------------------------------------------------------------------------
-
 class Board:
-    def __init__(self, board_size, num_ships, type):
+    
+    def __init__(self, board_type, board_size=5, num_ships=3):
         self.board_size = board_size
         self.num_ships = num_ships
-        self.type = type
+        self.board_type = board_type
+        self.misses = []
+        self.hits = []
+        self.ships = random.sample(range(self.board_size ** 2), self.num_ships)
 
 
     def create_boards(self):
@@ -207,7 +206,7 @@ print("-" * 35)
 player_name = get_user_name()
 print("-" * 35)
 print(f"Thanks for playing {player_name}")
-print(f"The Board Size is {board_size}.")
+print(f"The Board Size is {self.board_size}.")
 print(f"The number of ships each side has is {num_ships}.")
 print(f"You will have {num_turns} turns.")
 print("Top left corner is row: 0, col 0\n")
