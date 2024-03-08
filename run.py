@@ -32,45 +32,34 @@ class Board:
         self.ships = random.sample(range(self.board_size ** 2), self.num_ships)
 
 
-    def create_boards(self):
-        # instance method to create the boards
-        return random.sample(range(self.board_size ** 2), self.num_ships)
-
-def display_player_board():
-    print("\n    0  1  2  3  4")
-    print("    _  _  _  _  _")
-    for row in range(board_size):
-        line = ""
-        for column in range(board_size):
-            place = 5 * row + column
-            if place in computer_hit:
-                character = "|X|"
-            elif place in computer_miss:
-                character = "|O|"
-            elif place in player_ships:
-                character = "|@|"
-            else:
-                character = "|_|"
-            line += character
-            place += 1
-        print(row, "", line)
-
-def display_computer_board():
-    print("\n    0  1  2  3  4")
-    print("    _  _  _  _  _")
-    for row in range(board_size):
-        line = ""
-        for column in range(board_size):
-            place = 5 * row + column
-            if place in player_hit:
-                character = "|X|"
-            elif place in player_miss:
-                character = "|O|"
-            else:
-                character = "|_|"
-            line += character
-            place += 1
-        print(row, "", line)
+    def display(self, misses=[], hits=[], hidden=True):
+        print(f"{self.board_type}'s Board:")
+        coordinates = ''
+        dash_coordinates = ''
+        for coordinate in range(self.board_size):
+            coordinates += str(coordinate) + '  '
+            dash_coordinates += '_  '
+        print(f"\n    {coordinates}")
+        print(f"    {dash_coordinates}")
+        for row in range(self.board_size):
+            line = ""
+            for column in range(self.board_size):
+                place = self.board_size * row + column
+                if place in hits:
+                    character = "|X|"
+                elif place in misses:
+                    character = "|O|"
+                elif place in self.ships:
+                    if hidden:
+                        character = "|_|"
+                    else:
+                        character = "|@|"
+                else:
+                    character = "|_|"
+                line += character
+                place += 1
+            print(row, "", line)
+        print("\n")
 
 # GAME CLASS---------------------------------------------------------------------------------------------------
 
