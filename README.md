@@ -110,7 +110,7 @@ Whenever the player is asked to enter new coordinates, an option is given as to 
 
 The game is over when a player sinks all the opponents ships. A message displaying the winner and the boards are displayed again.
 
-![Player Wins](playerwins.png)
+![Player Wins](images/playerwins.png)
 
 The game can also end when both players run out of turns and the player with most ships sunk is the winner.
 

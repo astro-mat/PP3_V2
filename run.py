@@ -1,6 +1,8 @@
 import random
 
 # Function to get user name
+
+
 def get_user_name():
     input_is_valid = False
     while input_is_valid is False:
@@ -15,8 +17,9 @@ def get_user_name():
     return user_input
 
 # Class to store board data
+
+
 class Board:
-    
     def __init__(self, board_type, board_size=5, num_ships=3):
         self.board_size = board_size
         self.num_ships = num_ships
@@ -24,7 +27,6 @@ class Board:
         self.misses = []
         self.hits = []
         self.ships = random.sample(range(self.board_size ** 2), self.num_ships)
-    
 
     # displays the boards for both computer and player
     def display(self, misses=[], hits=[], hidden=True):
@@ -65,14 +67,16 @@ class Board:
                 if user_input.upper() in valid_values:
                     input_is_valid = True
                 else:
-                    print(f'Please enter one of the following values {valid_values}')
+                    print("Please enter one of the following values")
+                    print(f"{valid_values}")
+
             else:
                 print('Coordinate cant be empty')
         return user_input
 
+
 # class to control main game play
 class Game:
-
     def __init__(self, board_size=5, num_ships=3, num_turns=10):
         self.board_size = board_size
         self.num_ships = num_ships
@@ -96,25 +100,37 @@ class Game:
         print("- Is a miss")
         print("X Is a hit\n")
         print("Good Luck!!!")
-        self.player_board = Board(self.player_name, self.board_size, self.num_ships)
-        self.computer_board = Board('Computer', self.board_size, self.num_ships)
-        self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
-        self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
+        self.player_board = Board(
+            self.player_name, self.board_size, self.num_ships)
+        self.computer_board = Board(
+            'Computer', self.board_size, self.num_ships)
+        self.player_board.display(
+            misses=self.computer_board.misses,
+            hits=self.computer_board.hits, hidden=False)
+        self.computer_board.display(
+            misses=self.player_board.misses, hits=self.player_board.hits)
 
     # user plays
     def user_play(self):
-        print(f"You have used {self.num_turns_taken} out of {self.num_turns} turns")
+        print(
+            f"You have used {
+                self.num_turns_taken} out of {self.num_turns} turns")
         print(f"You have {self.num_turns - self.num_turns_taken} turns left")
-        row = self.player_board.validate_coordinate("Please guess a row (or type 'Q' to quit/exit): \n", ['0', '1', '2', '3', '4', 'Q'])
+        row = self.player_board.validate_coordinate(
+            "Please guess a row (or type 'Q' to quit/exit): \n",
+            ['0', '1', '2', '3', '4', 'Q'])
         if row.upper() == "Q":
             return self.end_game()
-        column = self.player_board.validate_coordinate("Please guess a column (or 'quit' to exit): \n", ['0', '1', '2', '3', '4', 'Q'])
+        column = self.player_board.validate_coordinate(
+            "Please guess a column (or 'quit' to exit): \n",
+            ['0', '1', '2', '3', '4', 'Q'])
         if column.upper() == "Q":
             return self.end_game()
         print("-" * 35)
         coordinate = (int(self.board_size) * int(row)) + int(column)
-        if (coordinate in self.player_board.misses) or (coordinate in self.player_board.hits):
-           print('You already guessed this coordinate')
+        if (coordinate in self.player_board.misses) or (
+                coordinate in self.player_board.hits):
+            print('You already guessed this coordinate')
         else:
             self.num_turns_taken = self.num_turns_taken + 1
             if coordinate in self.computer_board.ships:
@@ -129,7 +145,8 @@ class Game:
     # computer plays
     def computer_play(self):
         computer_guess = random.randint(0, 24)
-        while (computer_guess in self.computer_board.misses) or (computer_guess in self.computer_board.hits):
+        while (computer_guess in self.computer_board.misses) or (
+                computer_guess in self.computer_board.hits):
             computer_guess = random.randint(0, 24)
         if computer_guess in self.player_board.ships:
             print("Computer hit one of your ships!")
@@ -155,14 +172,20 @@ class Game:
                 print(f'{self.player_name} WINS!!')
                 self.num_turns_taken = 10
                 player_wins = True
-            self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
-            self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
+            self.player_board.display(
+                misses=self.computer_board.misses,
+                hits=self.computer_board.hits, hidden=False)
+            self.computer_board.display(
+                misses=self.player_board.misses,
+                hits=self.player_board.hits)
         if (computer_wins is False and player_wins is False):
             print('Game over, you ran out of turns')
             if len(self.player_board.hits) > len(self.computer_board.hits):
-                print(f'{self.player_name} WINS with {len(self.player_board.hits)} hits!!')
+                print(f'{self.player_name} WINS with {
+                    len(self.player_board.hits)} hits!!')
             if len(self.player_board.hits) < len(self.computer_board.hits):
-                print(f'Computer WINS with {len(self.computer_board.hits)} hits!!')
+                print(f'Computer WINS with {
+                    len(self.computer_board.hits)} hits!!')
             if len(self.player_board.hits) == len(self.computer_board.hits):
                 print(f'is a TIE!!')
 
@@ -172,10 +195,13 @@ class Game:
         import sys
         sys.exit(0)
 
+
 if __name__ == "__main__":
     play_again = True
     while play_again:
         game = Game(board_size=5, num_ships=3)
         game.play()
-        play_again = input('Press any key to play again, press q/Q to exit: ') not in ['q', 'Q']
+        play_again = input(
+            'Press any key to play again, press q/Q to exit: ') not in [
+                'q', 'Q']
     print('Thank you for playing')
