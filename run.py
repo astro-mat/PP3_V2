@@ -106,6 +106,30 @@ class Game:
         self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
         self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
 
+    def user_play(self):
+        print(f"You have used {self.num_turns_taken} out of {self.num_turns} turns")
+        print(f"You have {self.num_turns - self.num_turns_taken} turns left")
+        row = self.player_board.validate_coordinate("Please guess a row (or type 'Q' to quit/exit): \n", ['0', '1', '2', '3', '4', 'Q'])
+        if row.upper() == "Q":
+            return end_game()
+        column = self.player_board.validate_coordinate("Please guess a column (or 'quit' to exit): \n", ['0', '1', '2', '3', '4', 'Q'])
+        if column.upper() == "Q":
+            return end_game()
+        print("-" * 35)
+        coordinate = (int(self.board_size) * int(row)) + int(column)
+        if (coordinate in self.player_board.misses) or (coordinate in self.player_board.hits):
+           print('You already guessed this coordinate')
+        else:
+            self.num_turns_taken = self.num_turns_taken + 1
+            if coordinate in self.computer_board.ships:
+                print(f"Congratulations {self.player_name} You hit a ship!")
+                self.player_board.hits.append(coordinate)
+                print("-" * 35)
+            else:
+                print(f"You missed {self.player_name}, try again")
+                self.player_board.misses.append(coordinate)
+                print("-" * 35)
+
 def end_game():
     print("Do you want to play again?")
     print("(type Y to play again")
