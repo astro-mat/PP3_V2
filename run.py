@@ -77,7 +77,34 @@ class Board:
 # GAME CLASS---------------------------------------------------------------------------------------------------
 
 class Game:
-    pass
+
+    def __init__(self, board_size=5, num_ships=3, num_turns=10):
+        self.board_size = board_size
+        self.num_ships = num_ships
+        self.num_turns = num_turns
+        self.num_turns_taken = 0
+        print("Welcome to BATTLESHIPS!!\n")
+        print("Play against the computer to see who wins!")
+        print("choose where to fire on the grid and see")
+        print("if you hit one of the computers ships")
+        print("Then wait to see if the computer hits one of yours!")
+        print("First to sink all their opponents ships wins")
+        print("-" * 35)
+        self.player_name = get_user_name()
+        print(f"Thanks for playing {self.player_name}")
+        print(f"The Board Size is {self.board_size}.")
+        print(f"The number of ships each side has is {self.num_ships}.")
+        print(f"You will have {num_turns} turns.")
+        print("Top left corner is row: 0, col 0\n")
+        print("--LEGEND--")
+        print("@ Is a ship")
+        print("- Is a miss")
+        print("X Is a hit\n")
+        print("Good Luck!!!")
+        self.player_board = Board(self.player_name, self.board_size, self.num_ships)
+        self.computer_board = Board('PC', self.board_size, self.num_ships)
+        self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
+        self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
 
 def end_game():
     print("Do you want to play again?")
@@ -185,26 +212,6 @@ def computer_guess():
 
 
 
-print("Welcome to BATTLESHIPS!!\n")
-print("Play against the computer to see who wins!")
-print("choose where to fire on the grid and see")
-print("if you hit one of the computers ships")
-print("Then wait to see if the computer hits one of yours!")
-print("First to sink all their opponents ships wins")
-print("-" * 35)
-player_name = get_user_name()
-print("-" * 35)
-print(f"Thanks for playing {player_name}")
-print(f"The Board Size is {self.board_size}.")
-print(f"The number of ships each side has is {num_ships}.")
-print(f"You will have {num_turns} turns.")
-print("Top left corner is row: 0, col 0\n")
-print("--LEGEND--")
-print("@ Is a ship")
-print("- Is a miss")
-print("X Is a hit\n")
-print("Good Luck!!!")
-continue_game()
 
 print("-" * 35)
 
