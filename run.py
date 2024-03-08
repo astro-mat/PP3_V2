@@ -1,6 +1,6 @@
 import random
 
-
+# Function to get user name
 def get_user_name():
     input_is_valid = False
     while input_is_valid is False:
@@ -14,7 +14,7 @@ def get_user_name():
             print('Cant have an empty Name')
     return user_input
 
-
+# Class to store board data
 class Board:
     
     def __init__(self, board_type, board_size=5, num_ships=3):
@@ -25,6 +25,8 @@ class Board:
         self.hits = []
         self.ships = random.sample(range(self.board_size ** 2), self.num_ships)
     
+
+    # displays the boards for both computer and player
     def display(self, misses=[], hits=[], hidden=True):
         print(f"{self.board_type}'s Board:")
         coordinates = ''
@@ -54,6 +56,7 @@ class Board:
             print(row, "", line)
         print("\n")
 
+    # main coodinate validation method
     def validate_coordinate(self, input_message, valid_values):
         input_is_valid = False
         while input_is_valid is False:
@@ -67,7 +70,7 @@ class Board:
                 print('Coordinate cant be empty')
         return user_input
 
-
+# class to control main game play
 class Game:
 
     def __init__(self, board_size=5, num_ships=3, num_turns=10):
@@ -98,16 +101,16 @@ class Game:
         self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
         self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
 
-
+    # user plays
     def user_play(self):
         print(f"You have used {self.num_turns_taken} out of {self.num_turns} turns")
         print(f"You have {self.num_turns - self.num_turns_taken} turns left")
         row = self.player_board.validate_coordinate("Please guess a row (or type 'Q' to quit/exit): \n", ['0', '1', '2', '3', '4', 'Q'])
         if row.upper() == "Q":
-            return end_game()
+            return self.end_game()
         column = self.player_board.validate_coordinate("Please guess a column (or 'quit' to exit): \n", ['0', '1', '2', '3', '4', 'Q'])
         if column.upper() == "Q":
-            return end_game()
+            return self.end_game()
         print("-" * 35)
         coordinate = (int(self.board_size) * int(row)) + int(column)
         if (coordinate in self.player_board.misses) or (coordinate in self.player_board.hits):
@@ -123,6 +126,7 @@ class Game:
                 self.player_board.misses.append(coordinate)
                 print("-" * 35)
 
+    # computer plays
     def computer_play(self):
         computer_guess = random.randint(0, 24)
         while (computer_guess in self.computer_board.misses) or (computer_guess in self.computer_board.hits):
@@ -136,6 +140,7 @@ class Game:
             self.computer_board.misses.append(computer_guess)
             print("-" * 35)
 
+    # Main play method
     def play(self):
         player_wins = False
         computer_wins = False
@@ -161,10 +166,11 @@ class Game:
             if len(self.player_board.hits) == len(self.computer_board.hits):
                 print(f'is a TIE!!')
 
-def end_game():
-    print("Thanks for playing. Goodbye")
-    import sys
-    sys.exit(0)
+    # function to end play
+    def end_game(self):
+        print("Thanks for playing. Goodbye")
+        import sys
+        sys.exit(0)
 
 if __name__ == "__main__":
     play_again = True
