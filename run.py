@@ -149,6 +149,31 @@ class Game:
             self.computer_board.misses.append(computer_guess)
             print("-" * 35)
 
+    def play(self):
+        player_wins = False
+        computer_wins = False
+        while self.num_turns > self.num_turns_taken:
+            self.user_play()
+            self.computer_play()
+            if len(self.computer_board.hits) == self.num_ships:
+                print('Computer WINS!!')
+                self.num_turns_taken = 10
+                computer_wins = True
+            if len(self.player_board.hits) == self.num_ships:
+                print(f'{self.username} WINS!!')
+                self.num_turns_taken = 10
+                player_wins = True
+            self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
+            self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
+        if (computer_wins is False and player_wins is False):
+            print('Game over, you ran out of turns')
+            if len(self.player_board.hits) > len(self.computer_board.hits):
+                print(f'{self.username} WINS with {len(self.player_board.hits)} hits!!')
+            if len(self.player_board.hits) < len(self.computer_board.hits):
+                print(f'Computer WINS with {len(self.computer_board.hits)} hits!!')
+            if len(self.player_board.hits) == len(self.computer_board.hits):
+                print(f'is a TIE!!')
+
 def end_game():
     print("Do you want to play again?")
     print("(type Y to play again")
@@ -174,24 +199,10 @@ def play_game():
     while num_turns_taken < num_turns:
         print(f"{player_name}'s Board")
         display_player_board()
-        """
-        print("Players ships list is:")   #temp
-        print(player_ships)                 #temp
-        print("Players hits list is:")    #temp
-        print(player_hit)                   #temp
-        print("Players misses list is:")  #temp
-        print(player_miss)                  #temp
-        """
+
         print("\nComputers Board")
         display_computer_board()
-        """
-        print("Computer ships list is:")  #temp
-        print(computer_ships)               #temp
-        print("Computer hits list is:")   #temp
-        print(computer_hit)                 #temp
-        print("Computer misses list is:") #temp
-        print(computer_miss)                #temp
-        """
+
         print("-" * 35)
         print(f"You have used {num_turns_taken} out of {num_turns} turns")
         print(f"You have {num_turns - num_turns_taken} turns left")
@@ -207,33 +218,8 @@ def play_game():
         print("-" * 35)
         coordinate = (int(board_size) * int(row)) + int(column)
         num_turns_taken = num_turns_taken + 1
-        
+    
 
-
-
-
-
-        # COMPUTERS TURN
-        # Check if computer guess is in player_ships
-
-        computer_coordinate = computer_guess()
-
-        if computer_coordinate in player_ships:
-            player_ships.remove(computer_coordinate)
-            computer_hit.append(computer_coordinate)
-            print("Computer hit one of your ships!")
-            print("-" * 35)
-        else:
-            computer_miss.append(computer_coordinate)
-            print("Computer missed your ships")
-            print("-" * 35)
-
-    else:
-        print(f"You have ran out of turns {player_name}. Game over!")
-        end_game()
-
-def computer_guess():
-    return random.randint(0, 24)
 
 
 # MAIN CODE-------------------------------------------------------------------------------------------
