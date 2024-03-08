@@ -79,27 +79,46 @@ The two boards are then displayed, the players board with his ships visible and 
 
 ![Random Board Generation](images/randomboard.png) 
 
-
 The player is prompted to first quess a row that the computers ships may be in, and then guess a column. 
 
 Once a valid input is made, A message is displayed stating weather your guess hit a ship and/or the computers guess hit one of the players ships.
 
+![Make A Guess](images/makeaguess.png)
+
 If the player enters an invalid input, an error message is displayed and the player is prompted to re-enter
 
 ![Validation of coordinates](images/coordinatevalid.png) 
+
+The results of that round are displayed
+
+![Round Results](images/roundresults.png)
 
 The two boards are displayed again reflecting this result.
 
 - if one of the players hits a ship, an "X" is displayed
 - A miss is indicated by a "0"
 
-The number of turns taken and number of turns left is displayed and if there are turns left and no one has won, the player is once again prompted to enter a row and column guess.
-
 ![Playboards during the game](images/playboards.png) 
 
-Whenever the player is asked to enter new coordinates, an option is given as to weather the player wants to quit or continue playing. If they enter "quit" they are then finally asked to press any key to quit or press "Y" to return to the game.
+The number of turns taken and number of turns left is displayed and if there are turns left and no one has won, the player is once again prompted to enter a row and column guess.
+
+![End Of Round Results](images/endofround.png)
+
+Whenever the player is asked to enter new coordinates, an option is given as to whether the player wants to quit or continue playing. If they enter "quit" they are then finally asked to press any key to quit or press "Y" to return to the game.
 
 ![Exit feature](images/exitgame.png) 
+
+The game is over when a player sinks all the opponents ships. A message displaying the winner and the boards are displayed again.
+
+![Player Wins](playerwins.png)
+
+The game can also end when both players run out of turns and the player with most ships sunk is the winner.
+
+![Ran out of turns](images/nomoreturns.png)
+
+At each of these there is a prompt to play again or exit
+
+![Play Again](images/playagain.png)
 
 ### Future Features 
 
