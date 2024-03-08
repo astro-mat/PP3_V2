@@ -1,7 +1,6 @@
 import random
 
 
-
 def get_user_name():
     input_is_valid = False
     while input_is_valid is False:
@@ -14,9 +13,6 @@ def get_user_name():
         else:
             print('Cant have an empty Name')
     return user_input
-
-
-
 
 # BOARD CLASS-------------------------------------------------------------------------------------
 class Board:
@@ -224,32 +220,11 @@ def play_game():
 
 # MAIN CODE-------------------------------------------------------------------------------------------
 
+if __name__ == "__main__":
+    play_again = True
+    while play_again:
+        game = Game(board_size=5, num_ships=3)
+        game.play()
+        play_again = input('Press any key to play again, press q/Q to exit: ') not in ['q', 'Q']
+    print('Thank you for playing')
 
-
-
-print("-" * 35)
-
-# class instance for computer_board
-computer_board = Board(board_size, num_ships, type="computer")
-# Class instance for player board
-player_board = Board(board_size, num_ships, type="player")
-
-
-computer_ships = computer_board.create_boards()
-computer_hit = []
-computer_miss = []
-
-player_ships = player_board.create_boards()
-player_hit = []
-player_miss = []
-
-play_game()
-
-"""
-
-NEED TO ADD/FIX
-- Add more classes
-- validate if you have already chosen that coordinate
-- what happens when you win?
-- say how many ships left 
-"""
