@@ -7,6 +7,23 @@ board_size = 5
 num_ships = 3
 num_turns = 10
 
+
+def get_user_name():
+    input_is_valid = False
+    while input_is_valid is False:
+        user_input = input("Please enter your name (3 letters or more): \n")
+        if user_input:
+            if len(user_input) >= 3:
+                input_is_valid = True
+            else:
+                print('Name should be 3 letters or more')
+        else:
+            print('Cant have an empty Name')
+    return user_input
+
+
+
+
 # BOARD CLASS-------------------------------------------------------------------------------------
 
 class Board:
@@ -178,23 +195,6 @@ def validate_coordinate(input_message, valid_values):
 
 # MAIN CODE-------------------------------------------------------------------------------------------
 
-class User:
-    def __init__(self, player_name):
-        self.player_name = player_name
-
-
-    def get_user_name():
-        input_is_valid = False
-        while input_is_valid is False:
-            user_input = input("Please enter your name (3 letters or more): \n")
-            if user_input:
-                if len(user_input) >= 3:
-                    input_is_valid = True
-                else:
-                    print('Name should be 3 letters or more')
-            else:
-                print('Cant have an empty Name')
-        return user_input
 
 
 print("Welcome to BATTLESHIPS!!\n")
@@ -204,7 +204,7 @@ print("if you hit one of the computers ships")
 print("Then wait to see if the computer hits one of yours!")
 print("First to sink all their opponents ships wins")
 print("-" * 35)
-player_name =  User.get_user_name()
+player_name = get_user_name()
 print("-" * 35)
 print(f"Thanks for playing {player_name}")
 print(f"The Board Size is {board_size}.")
