@@ -106,6 +106,9 @@ class Game:
         self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
         self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
 
+# PLAYERS TURN
+# Check if the player_guess is in computer_ships
+
     def user_play(self):
         print(f"You have used {self.num_turns_taken} out of {self.num_turns} turns")
         print(f"You have {self.num_turns - self.num_turns_taken} turns left")
@@ -129,6 +132,22 @@ class Game:
                 print(f"You missed {self.player_name}, try again")
                 self.player_board.misses.append(coordinate)
                 print("-" * 35)
+
+# COMPUTERS TURN
+# Check if computer_guess is in player_ships
+
+    def computer_play(self):
+        computer_guess = random.randint(0, 24)
+        while (computer_guess in self.computer_board.misses) or (computer_guess in self.computer_board.hits):
+            computer_guess = random.randint(0, 24)
+        if computer_guess in self.player_board.ships:
+            print("Computer hit one of your ships!")
+            self.computer_board.hits.append(computer_guess)
+            print("-" * 35)
+        else:
+            print("Computer missed your ships")
+            self.computer_board.misses.append(computer_guess)
+            print("-" * 35)
 
 def end_game():
     print("Do you want to play again?")
@@ -189,23 +208,8 @@ def play_game():
         coordinate = (int(board_size) * int(row)) + int(column)
         num_turns_taken = num_turns_taken + 1
         
-        # PLAYERS TURN
-        # Check if the player guess is in computer_ships
 
-        try:
-            if coordinate in computer_ships:
-                computer_ships.remove(coordinate)
-                player_hit.append(coordinate)
-                print(f"Congratulations {player_name} You hit a ship!")
-                print("-" * 35)
-            else:
-                player_miss.append(coordinate)
-                print(f"You missed {player_name}, try again")
-                print("-" * 35)
-        except ValueError:
-            print("Incorrect coordinates.")
-            print("Please enter your guess as a number.\n")
-            print("-" * 35)
+
 
 
 
