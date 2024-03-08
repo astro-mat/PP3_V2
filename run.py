@@ -1,7 +1,5 @@
 import random
 
-# Game variables
-
 
 
 def get_user_name():
@@ -61,6 +59,21 @@ class Board:
             print(row, "", line)
         print("\n")
 
+# Checks that the coordinate entered is valid
+
+    def validate_coordinate(self, input_message, valid_values):
+        input_is_valid = False
+        while input_is_valid is False:
+            user_input = input(input_message)
+            if user_input:
+                if user_input.upper() in valid_values:
+                    input_is_valid = True
+                else:
+                    print(f'Please enter one of the following values {valid_values}')
+            else:
+                print('Coordinate cant be empty')
+        return user_input
+    
 # GAME CLASS---------------------------------------------------------------------------------------------------
 
 class Game:
@@ -166,19 +179,6 @@ def play_game():
 
 def computer_guess():
     return random.randint(0, 24)
-
-def validate_coordinate(input_message, valid_values):
-    input_is_valid = False
-    while input_is_valid is False:
-        user_input = input(input_message)
-        if user_input:
-            if user_input.upper() in valid_values:
-                input_is_valid = True
-            else:
-                print(f'Please enter one of the following values {valid_values}')
-        else:
-            print('Coordinate cant be empty')
-    return user_input
 
 
 # MAIN CODE-------------------------------------------------------------------------------------------
