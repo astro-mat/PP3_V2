@@ -12,11 +12,11 @@ A live link to the game can be found here: [Battleships Game](https://mattleship
 
 ## How to play
 
-The game is played with two boards, one for each pplayer.
+The game is played with two boards, one for each player.
 
 Each game board is a 5 x 5 grid labeled from 0 to 4. the player chooses a coordinate to guess where the computers ship is. The computer does the same.
 
-On a player's board, ships are represented by '@' symbols. When an opponent successfully hits a ship, that coordinate is marked with an 'X'. A miss is indicated by a '*' symbol.
+On a player's board, ships are represented by '@' symbols. When an opponent successfully hits a ship, that coordinate is marked with an 'X'. A miss is indicated by a 'O' symbol.
 
 The computers board does not display the ships. Only the hits and misses
 
@@ -34,15 +34,15 @@ Players have the option to exit the game if they choose to do so before each tur
 
 ## User Stories 
 
-- ### As a first time user, I want to: 
+- ### As a first time user, I want: 
 
-- I wish to quickly grasp the game's instructions.
+- to quickly grasp the game's instructions.
 
-- I want a game that is both simple and enjoyable to play.
+- A game that is both simple and enjoyable to play.
 
-- I seek the option to exit the game whenever I choose.
+- The option to exit the game whenever I choose.
 
-- I want the ability to play another round once the current game concludes.
+- The ability to play another round once the current game concludes.
 
 ## Flowchart  
 
@@ -69,7 +69,6 @@ The game is started. Some information is displayed about the game
 - The board size
 - The number of ships each side has
 - the number of turns each player has
-- A description of the numbers of the board
 
 ![Game initialisation](images/init_game.png) 
 
@@ -145,6 +144,8 @@ This class stores the information required for generating both the player board 
 
 It includes all of the functions of the game such as the boardsize, ship size, ship location.
 
+It also includes validation of user inputs
+
 
 ### Game Class
 
@@ -153,7 +154,7 @@ The game class includes all the information needed while playing the game. the g
 
 ### User Class
 
-The user class includes all the details for the user such as user name and score
+The user class includes all the details for the user.
 
 ## Testing  
 
@@ -189,4 +190,4 @@ The user class includes all the details for the user such as user name and score
 - [Battleships game by Mark Anthony Lleg](https://llego.dev/posts/how-code-simple-battleship-game-python/)
 - [Python Battleship with Object Oriented Programming](https://www.youtube.com/watch?v=alJH_c9t4zw&t=275s&ab_channel=KnowledgeMavens)
 - [Battleships game by Tilde Holm](https://github.com/tildeholmqvist/battleshipgame)
-- And my mentor Antonio for all his help.
+- And my mentor Antonio for all his help and being so genorous with his time.
