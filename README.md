@@ -167,8 +167,6 @@ The user class includes all the details for the user such as user name and score
 - [Code institute Love Sandwiches Project](https://github.com/tildeholmqvist/LoveSandwiches)
 - [W3Schools](https://www.w3schools.com/)
 - [Stack Overflow](https://stackoverflow.com/)
-
-
 - [Battleships game by Mark Anthony Lleg](https://llego.dev/posts/how-code-simple-battleship-game-python/)
 - [Python Battleship with Object Oriented Programming](https://www.youtube.com/watch?v=alJH_c9t4zw&t=275s&ab_channel=KnowledgeMavens)
 - [Battleships game by Tilde Holm](https://github.com/tildeholmqvist/battleshipgame)

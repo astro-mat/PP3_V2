@@ -97,7 +97,7 @@ class Game:
         print("X Is a hit\n")
         print("Good Luck!!!")
         self.player_board = Board(self.player_name, self.board_size, self.num_ships)
-        self.computer_board = Board('PC', self.board_size, self.num_ships)
+        self.computer_board = Board('Computer', self.board_size, self.num_ships)
         self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
         self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
 
@@ -152,15 +152,15 @@ class Game:
                 self.num_turns_taken = 10
                 computer_wins = True
             if len(self.player_board.hits) == self.num_ships:
-                print(f'{self.username} WINS!!')
+                print(f'{self.player_name} WINS!!')
                 self.num_turns_taken = 10
                 player_wins = True
             self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
             self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
         if (computer_wins is False and player_wins is False):
-            print('Game over, you rant out of turns')
+            print('Game over, you ran out of turns')
             if len(self.player_board.hits) > len(self.computer_board.hits):
-                print(f'{self.username} WINS with {len(self.player_board.hits)} hits!!')
+                print(f'{self.player_name} WINS with {len(self.player_board.hits)} hits!!')
             if len(self.player_board.hits) < len(self.computer_board.hits):
                 print(f'Computer WINS with {len(self.computer_board.hits)} hits!!')
             if len(self.player_board.hits) == len(self.computer_board.hits):
