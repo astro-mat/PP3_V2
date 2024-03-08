@@ -7,13 +7,12 @@ board_size = 5
 num_ships = 3
 num_turns = 10
 
-#-------------------------------------------------------------------------------------
+# BOARD CLASS-------------------------------------------------------------------------------------
 
 class Board:
-    def __init__(self, board_size, num_ships, player_name, type):
+    def __init__(self, board_size, num_ships, type):
         self.board_size = board_size
         self.num_ships = num_ships
-        self.player_name = player_name
         self.type = type
 
 
@@ -57,7 +56,7 @@ def display_computer_board():
             place += 1
         print(row, "", line)
 
-#---------------------------------------------------------------------------------------------------
+# GAME CLASS---------------------------------------------------------------------------------------------------
 
 class Game:
     pass
@@ -73,7 +72,7 @@ def end_game():
         return
 
 def continue_game():
-    print("Do you accept the challenge?")
+    print(f"Do you accept the challenge {player_name}?")
     print("(type Y to continue")
     play_again = str(input(" or any other key to quit):\n"))
     if play_again.upper() == "Y":
@@ -128,11 +127,11 @@ def play_game():
             if coordinate in computer_ships:
                 computer_ships.remove(coordinate)
                 player_hit.append(coordinate)
-                print("You hit a ship")
+                print(f"Congratulations {player_name} You hit a ship!")
                 print("-" * 35)
             else:
                 player_miss.append(coordinate)
-                print("You missed, try again")
+                print(f"You missed {player_name}, try again")
                 print("-" * 35)
         except ValueError:
             print("Incorrect coordinates.")
@@ -177,23 +176,25 @@ def validate_coordinate(input_message, valid_values):
     return user_input
 
 
-#-------------------------------------------------------------------------------------------
+# MAIN CODE-------------------------------------------------------------------------------------------
 
 class User:
-    pass
+    def __init__(self, player_name):
+        self.player_name = player_name
 
-def get_user_name():
-    input_is_valid = False
-    while input_is_valid is False:
-        user_input = input("Please enter your name (3 letters or more): \n")
-        if user_input:
-            if len(user_input) >= 3:
-                input_is_valid = True
+
+    def get_user_name():
+        input_is_valid = False
+        while input_is_valid is False:
+            user_input = input("Please enter your name (3 letters or more): \n")
+            if user_input:
+                if len(user_input) >= 3:
+                    input_is_valid = True
+                else:
+                    print('Name should be 3 letters or more')
             else:
-                print('Name should be 3 letters or more')
-        else:
-            print('Cant have an empty Name')
-    return user_input
+                print('Cant have an empty Name')
+        return user_input
 
 
 print("Welcome to BATTLESHIPS!!\n")
@@ -203,7 +204,7 @@ print("if you hit one of the computers ships")
 print("Then wait to see if the computer hits one of yours!")
 print("First to sink all their opponents ships wins")
 print("-" * 35)
-player_name =  get_user_name()
+player_name =  User.get_user_name()
 print("-" * 35)
 print(f"Thanks for playing {player_name}")
 print(f"The Board Size is {board_size}.")
@@ -220,9 +221,10 @@ continue_game()
 print("-" * 35)
 
 # class instance for computer_board
-computer_board = Board(board_size, num_ships, "Computer", type="computer")
+computer_board = Board(board_size, num_ships, type="computer")
 # Class instance for player board
-player_board = Board(board_size, num_ships, player_name, type="player")
+player_board = Board(board_size, num_ships, type="player")
+
 
 computer_ships = computer_board.create_boards()
 computer_hit = []
