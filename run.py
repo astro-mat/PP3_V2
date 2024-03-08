@@ -14,7 +14,7 @@ def get_user_name():
             print('Cant have an empty Name')
     return user_input
 
-# BOARD CLASS-------------------------------------------------------------------------------------
+
 class Board:
     
     def __init__(self, board_type, board_size=5, num_ships=3):
@@ -24,8 +24,7 @@ class Board:
         self.misses = []
         self.hits = []
         self.ships = random.sample(range(self.board_size ** 2), self.num_ships)
-
-
+    
     def display(self, misses=[], hits=[], hidden=True):
         print(f"{self.board_type}'s Board:")
         coordinates = ''
@@ -55,8 +54,6 @@ class Board:
             print(row, "", line)
         print("\n")
 
-# Checks that the coordinate entered is valid
-
     def validate_coordinate(self, input_message, valid_values):
         input_is_valid = False
         while input_is_valid is False:
@@ -69,8 +66,7 @@ class Board:
             else:
                 print('Coordinate cant be empty')
         return user_input
-    
-# GAME CLASS---------------------------------------------------------------------------------------------------
+
 
 class Game:
 
@@ -102,8 +98,6 @@ class Game:
         self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
         self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
 
-# PLAYERS TURN
-# Check if the player_guess is in computer_ships
 
     def user_play(self):
         print(f"You have used {self.num_turns_taken} out of {self.num_turns} turns")
@@ -128,9 +122,6 @@ class Game:
                 print(f"You missed {self.player_name}, try again")
                 self.player_board.misses.append(coordinate)
                 print("-" * 35)
-
-# COMPUTERS TURN
-# Check if computer_guess is in player_ships
 
     def computer_play(self):
         computer_guess = random.randint(0, 24)
@@ -162,7 +153,7 @@ class Game:
             self.player_board.display(misses=self.computer_board.misses, hits=self.computer_board.hits, hidden=False)
             self.computer_board.display(misses=self.player_board.misses, hits=self.player_board.hits)
         if (computer_wins is False and player_wins is False):
-            print('Game over, you ran out of turns')
+            print('Game over, you rant out of turns')
             if len(self.player_board.hits) > len(self.computer_board.hits):
                 print(f'{self.username} WINS with {len(self.player_board.hits)} hits!!')
             if len(self.player_board.hits) < len(self.computer_board.hits):
@@ -171,54 +162,9 @@ class Game:
                 print(f'is a TIE!!')
 
 def end_game():
-    print("Do you want to play again?")
-    print("(type Y to play again")
-    play_again = str(input(" or any other key to quit):\n"))
-    if play_again.upper() == "Y":
-        play_game()
-    else:
-        print("Thankyou for playing. Goodbye!")
-        return
-
-def continue_game():
-    print(f"Do you accept the challenge {player_name}?")
-    print("(type Y to continue")
-    play_again = str(input(" or any other key to quit):\n"))
-    if play_again.upper() == "Y":
-        return
-    else:
-        print("Thankyou for playing. Goodbye!")
-        return
-
-def play_game():
-    num_turns_taken = 0
-    while num_turns_taken < num_turns:
-        print(f"{player_name}'s Board")
-        display_player_board()
-
-        print("\nComputers Board")
-        display_computer_board()
-
-        print("-" * 35)
-        print(f"You have used {num_turns_taken} out of {num_turns} turns")
-        print(f"You have {num_turns - num_turns_taken} turns left")
-
-        # row = input("Please guess a row (or type 'Q' to quit/exit): \n")
-        row = validate_coordinate("Please guess a row (or type 'Q' to quit/exit): \n", ['0', '1', '2', '3', '4', 'Q'])
-        if row.upper() == "Q":
-            return end_game()
-        # column = input("please guess a column (or 'quit' to exit): \n")
-        column = validate_coordinate("Please guess a column (or 'quit' to exit): \n", ['0', '1', '2', '3', '4', 'Q'])
-        if column.upper() == "Q":
-            return end_game()
-        print("-" * 35)
-        coordinate = (int(board_size) * int(row)) + int(column)
-        num_turns_taken = num_turns_taken + 1
-    
-
-
-
-# MAIN CODE-------------------------------------------------------------------------------------------
+    print("Thanks for playing. Goodbye")
+    import sys
+    sys.exit(0)
 
 if __name__ == "__main__":
     play_again = True
@@ -227,4 +173,3 @@ if __name__ == "__main__":
         game.play()
         play_again = input('Press any key to play again, press q/Q to exit: ') not in ['q', 'Q']
     print('Thank you for playing')
-
