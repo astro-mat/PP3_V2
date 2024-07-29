@@ -180,8 +180,7 @@ class Game:
         if (computer_wins is False and player_wins is False):
             print('Game over, you ran out of turns')
             if len(self.player_board.hits) > len(self.computer_board.hits):
-                print(f'{self.player_name} WINS with {
-                    len(self.player_board.hits)} hits!!')
+                print(f'{self.player_name} WINS with {len(self.player_board.hits)} hits!!')
             if len(self.player_board.hits) < len(self.computer_board.hits):
                 print(f'Computer WINS with {
                     len(self.computer_board.hits)} hits!!')
@@ -204,3 +203,4 @@ if __name__ == "__main__":
             'Press any key to play again, press q/Q to exit: ') not in [
                 'q', 'Q']
     print('Thank you for playing')
+    
