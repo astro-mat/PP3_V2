@@ -113,7 +113,8 @@ class Game:
     # user plays
     def user_play(self):
         print(
-            f"You have used {self.num_turns_taken} out of {self.num_turns} turns")
+            f"You have used {self.num_turns_taken} out of "
+            f"{self.num_turns} turns")
         print(f"You have {self.num_turns - self.num_turns_taken} turns left")
         row = self.player_board.validate_coordinate(
             "Please guess a row (or type 'Q' to quit/exit): \n",
@@ -180,9 +181,15 @@ class Game:
         if (computer_wins is False and player_wins is False):
             print('Game over, you ran out of turns')
             if len(self.player_board.hits) > len(self.computer_board.hits):
-                print(f'{self.player_name} WINS with {len(self.player_board.hits)} hits!!')
+                print(
+                    f'{self.player_name} WINS with '
+                    f'{len(self.player_board.hits)} hits!!'
+                )
             if len(self.player_board.hits) < len(self.computer_board.hits):
-                print(f'Computer WINS with {len(self.computer_board.hits)} hits!!')
+                print(
+                    f'Computer WINS with '
+                    f'{len(self.computer_board.hits)} hits!!'
+                    )
             if len(self.player_board.hits) == len(self.computer_board.hits):
                 print(f'is a TIE!!')
 
@@ -202,4 +209,3 @@ if __name__ == "__main__":
             'Press any key to play again, press q/Q to exit: ') not in [
                 'q', 'Q']
     print('Thank you for playing')
-    
