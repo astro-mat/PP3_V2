@@ -182,8 +182,7 @@ class Game:
             if len(self.player_board.hits) > len(self.computer_board.hits):
                 print(f'{self.player_name} WINS with {len(self.player_board.hits)} hits!!')
             if len(self.player_board.hits) < len(self.computer_board.hits):
-                print(f'Computer WINS with {
-                    len(self.computer_board.hits)} hits!!')
+                print(f'Computer WINS with {len(self.computer_board.hits)} hits!!')
             if len(self.player_board.hits) == len(self.computer_board.hits):
                 print(f'is a TIE!!')
 
