@@ -113,8 +113,7 @@ class Game:
     # user plays
     def user_play(self):
         print(
-            f"You have used {
-                self.num_turns_taken} out of {self.num_turns} turns")
+            f"You have used {self.num_turns_taken} out of {self.num_turns} turns")
         print(f"You have {self.num_turns - self.num_turns_taken} turns left")
         row = self.player_board.validate_coordinate(
             "Please guess a row (or type 'Q' to quit/exit): \n",
