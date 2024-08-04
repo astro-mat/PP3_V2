@@ -160,7 +160,7 @@ The user class includes all the details for the user.
 
 ![Screenshot of PEP8 linter](images/pep8.png) 
 
-- The game code has been tested with the [PEP8](https://pep8ci.herokuapp.com/#) linter and all errors were addressed and fixed.  
+- The game code has been tested with the [PEP8](https://pep8ci.herokuapp.com/#) linter and all errors were addressed and fixed as can be seen in the included screenshot.  
 
 - The players inputs have been manually tested on the Code Institute Heroku terminal and is working without any errors: 
 
@@ -179,6 +179,33 @@ The user class includes all the details for the user.
     - A word or words
 
     - Empty Character 
+
+## Deployment
+
+The site was deployed at Heroku by doing the following steps.
+
+- Open Heroku and log in
+- Click on "New" and choose the option "Create new app"
+- Choose an app name and which region (Europe or United States) you are located in
+- Press "Create app"
+- When the app is created, choose the Settings tab
+- Under "Config Vars", press "Reveal Config Vars"
+- In keys, write CREDS
+- In value, insert the code from the creds.json file
+- Press "Add"
+- In keys, write PORT
+- In value, write 8000
+- Press "Add"
+- Under "Buildpacks", press "Add buildpack"
+- Choose "Python", press "Add buildpack"
+- Choose "Nodejs", press "Add buildpack"
+- Change tab to the Deploy tab
+- Choose deploy method - GitHub
+- Search for the correct repository name at your connected GitHub account
+- Press "Connect"
+- Under "Manual deploy", choose which branch to deploy and press "Deploy Branch"
+
+Link to the website <https://mattleships-1ef855055238.herokuapp.com/>
 
 
 
